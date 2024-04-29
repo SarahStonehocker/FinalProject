@@ -1,27 +1,35 @@
 import pygame
 import time
 
-pygame.init()
+def setup():
+    pygame.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 800
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 800
 
-screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-pygame.display.set_caption('FinalGame')
+    global screen
+    screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    pygame.display.set_caption('FinalGame')
 
-spaceShipBG = pygame.image.load('Sprites/spaceShipConceptArt2.jpg').convert_alpha()
-spaceDude = pygame.image.load('Sprites/spaceDudeCA.png').convert_alpha()
-imgSize = (0.2,0.2)
-pygame.transform.scale(spaceShipBG, imgSize)
+    global spaceShipBG
+    spaceShipBG = pygame.image.load('Sprites/spaceShipConceptArt2.jpg').convert_alpha()
+    global spaceDude
+    spaceDude = pygame.image.load('Sprites/spaceDudeCA.png').convert_alpha()
+    imgSize = (0.2,0.2)
+    pygame.transform.scale(spaceShipBG, imgSize)
 
+    #BG = (50,50,50)
+    BG = spaceShipBG
 
+    global idleChar1
+    idleChar1 = False
+    global index
+    index = 0
+    global charAniState
+    charAniState = 0
 
-#BG = (50,50,50)
-BG = spaceShipBG
-
-idleChar1 = False
-index = 0
-charAniState = 0
+    #Start Game
+    run = True
 
 def char1Idle(x,y, size, speed, charAniState):
     time.sleep(speed) # frames per Second
@@ -60,6 +68,7 @@ def char1Idle(x,y, size, speed, charAniState):
 
 
 run = True
+setup()
 while run:
 
     #update background
@@ -71,21 +80,6 @@ while run:
 
 
     char1Idle(300,-100, (0.5,0.5), 0.2, 0) #position , size, time Between frames, type of animation (0 = idle)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     #even handler
     for event in pygame.event.get():

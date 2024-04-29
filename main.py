@@ -1,6 +1,44 @@
 import random
+#from SolandGraphics import char1Idle
+#from SolandGraphics import setup
+import SolandGraphics
+import pygame
+import time
+
+#----------Screen and Event Handler Set up -Soland
+pygame.init()
+global idleChar1
+idleChar1 = False
+global index
+index = 0
+global charAniState
+charAniState = 0
+
+#Start Game
+run = True
+SolandGraphics.setup()
+while run:
+
+    #update background
+    #screen.fill(BG)
+    bgPOS = 0,0
+    spaceDudePOS = -250,100
+    SolandGraphics.screen.blit(SolandGraphics.spaceShipBG, tuple(bgPOS))
+    SolandGraphics.screen.blit(SolandGraphics.spaceDude, tuple(spaceDudePOS))
+    SolandGraphics.char1Idle(300,-100, (0.5,0.5), 0.2, 0) #position , size, time Between frames, type of animation (0 = idle)
+    
+    #even handler
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    pygame.display.update()
+
+pygame.quit()
+#--------End
 
 def main():
+
     supplies = 10
     crew = 3
     broken_solar = False
