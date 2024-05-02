@@ -1,7 +1,4 @@
 import random
-from SolandGraphics import char1Idle
-from SolandGraphics import setup
-from SolandGraphics import drawBackground
 import globalVariables
 import SolandGraphics
 import sys
@@ -41,9 +38,12 @@ def main():
     run = True
     while run:
         #update background
-        SolandGraphics.drawBackground()
+        #SolandGraphics.drawBackground()
         
-        SolandGraphics.char1Idle(300,-100, (0.5,0.5), 0.2, 0) #position , size, time Between frames, type of animation (0 = idle), index
+        #SolandGraphics.char1Idle(300,-100, (0.5,0.5), 0.2, 0) #position , size, time Between frames, type of animation (0 = idle), index
+        
+        SolandGraphics.spaceLocation(0,0, (0.5,0.5), 0.1, 0)
+        SolandGraphics.spaceShip(0,0, (0.5,0.5), 0.1, 0)
 
         #even handler
         for event in pygame.event.get():
