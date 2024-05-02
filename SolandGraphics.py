@@ -2,16 +2,11 @@ import pygame
 import time
 import globalVariables
 
-index = 0
 def setup():
     pygame.init()
-
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 800
-
-    global screen
-    global index
-    screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    
+    screen = pygame.display.set_mode((globalVariables.SCREEN_WIDTH,globalVariables.SCREEN_HEIGHT))
+    globalVariables.screen = screen
     pygame.display.set_caption('FinalGame')
     
 
@@ -49,8 +44,8 @@ def drawBackground():
     spaceDude = pygame.image.load('Sprites/spaceDudeCA.png').convert_alpha()
     imgSize = (0.2,0.2)
     pygame.transform.scale(spaceShipBG, imgSize)
-    screen.blit(spaceShipBG, tuple(bgPOS))
-    screen.blit(spaceDude, tuple(spaceDudePOS))
+    globalVariables.screen.blit(spaceShipBG, tuple(bgPOS))
+    globalVariables.screen.blit(spaceDude, tuple(spaceDudePOS))
 
 def char1Idle(x,y, size, speed, charAniState):
     index = globalVariables.frame
@@ -74,15 +69,15 @@ def char1Idle(x,y, size, speed, charAniState):
     #idle animation
     if charAniState == 0:
         if (index == 0):
-            screen.blit(frame1, tuple(pos))
+            globalVariables.screen.blit(frame1, tuple(pos))
             globalVariables.frame += 1
 
         elif (index == 1):
-            screen.blit(frame2, tuple(pos))
+            globalVariables.screen.blit(frame2, tuple(pos))
             globalVariables.frame += 1
             
         elif (index == 2):
-            screen.blit(frame3, tuple(pos))
+            globalVariables.screen.blit(frame3, tuple(pos))
             globalVariables.frame = 0
             
         else:
