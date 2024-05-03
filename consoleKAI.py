@@ -7,7 +7,8 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode([600, 500])
 base_font = pygame.font.Font(None, 32)
 user_text = ''
-input_rect = pygame.Rect(200, 200, 140, 32)
+input_rect = pygame.Rect(190, 430, 140, 32)
+input_rect_BG = pygame.Rect(180, 420, 400, 300)
 color_active = pygame.Color('lightskyblue3')
 color_passive = pygame.Color('chartreuse4')
 color = color_passive
@@ -42,7 +43,8 @@ def draw():
                 else:
                     user_text += event.unicode
 
-    screen.fill((255, 255, 255))
+    #screen.fill((255, 255, 255))
+    pygame.draw.rect(screen, (0,255,0), input_rect_BG)
 
     if active:
         color = color_active
