@@ -1,7 +1,7 @@
 frame = 0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
-decision = 1
+decision = 0
 supplies = 10
 crew = 3
 broken_solar = False
