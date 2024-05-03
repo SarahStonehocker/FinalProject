@@ -5,7 +5,6 @@ decision = 1
 supplies = 10
 crew = 3
 broken_solar = False
-location = 0
 
 def init():
     global frame
@@ -24,5 +23,3 @@ def init():
     global SCREEN_HEIGHT
     SCREEN_HEIGHT = 800
     global screen
-    global location
-    location = 0

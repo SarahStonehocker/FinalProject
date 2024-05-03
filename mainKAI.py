@@ -23,14 +23,19 @@ def main():
     while runGame:
 
         # Update background
+        if (globalVariables.decision == 1):
+            #fillerfor EarthLocation
+            SolandGraphics.drawBackground()
+        elif (globalVariables.decision == 2):
+            SolandGraphics.spaceLocation(0,0, (0.5,0.5), 0.1, 0)
+        
         SolandGraphics.spaceShip(0,0, (0.5,0.5), 0.1, 0)
-        if (globalVariables.location == 0):
-            SolandGraphics.spaceShip(0,0, (0.5,0.5), 0.1, 0)
-        else:
-            break
+
         # Draw text input
         consoleKAI.draw()
 
+        handle_game_decisions(globalVariables.decision)
+        #globalVariables.decision += 1
 
         if game_state == RUNNING:
 
