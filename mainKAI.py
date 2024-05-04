@@ -97,8 +97,8 @@ def handle_game_decisions(decision):
             globalVariables.supplies -= 1
         elif decision == 2 and globalVariables.user_input == "n":
             #FILL THIS
-            globalVariables.decision += 0
-            globalVariables.supplies -= 0
+            globalVariables.decision += 1
+            globalVariables.supplies -= 4
             #
     elif decision == 3:
         if globalVariables.broken_solar:
