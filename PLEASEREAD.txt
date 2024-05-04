@@ -1,0 +1,23 @@
+PLEASE READ!
+
+Please be patient when you type as the loop does not iterate very fast.
+
+For your convinience the answer keywords have been listed below.
+
+Hope you enjoy the game!
+
+
+
+Keywords:
+
+  jump
+  y/n
+  fly
+  slingshot
+  crew
+  robot
+  ignore
+  inspect
+  leave
+  power cell
+  investigate
