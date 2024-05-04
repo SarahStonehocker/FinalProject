@@ -8,8 +8,8 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode([600, 500])
 base_font = pygame.font.Font(None, 32)
 user_text = ''
-input_rect = pygame.Rect(190, 430, 140, 32)
-input_rect_BG = pygame.Rect(180, 420, 400, 300)
+input_rect = pygame.Rect(170, 430, 140, 32)
+input_rect_BG = pygame.Rect(160, 420, 450, 300)
 color_active = pygame.Color('lightskyblue3')
 color_passive = pygame.Color('chartreuse4')
 color = color_passive
@@ -43,6 +43,7 @@ def draw():
                     elif (globalVariables.decision == 2):
                         if (user_text == "yes"):
                             globalVariables.decision += 1
+                    globalVariables.user_input = user_text
                     user_text = ''
                 elif event.key == pygame.K_BACKSPACE:
                     user_text = user_text[:-1]

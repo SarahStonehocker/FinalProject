@@ -34,6 +34,12 @@ def main():
         # Draw text input
         consoleKAI.draw()
 
+        #update and draw resources
+        consoleKAI.output("Crew: ", 0, 200, (0,0,0))
+        consoleKAI.output(str(globalVariables.crew), 67, 201, (0,0,0))
+        consoleKAI.output("Supplies: ", 90, 200, (0,0,0))
+        consoleKAI.output(str(globalVariables.supplies), 195, 201, (0,0,0))
+
         # Handle Pygame events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -80,14 +86,20 @@ def handle_game_decisions(decision):
             
     elif decision == 2:
         consoleKAI.output("Jump to hyperspace now? (y/n) ", 0, 0, (0,0,0))
+
         if random.random() < 0.4:
             globalVariables.broken_solar = True
         else:
             globalVariables.broken_solar = False
+
         if decision == 2 and globalVariables.user_input == "y":
             globalVariables.decision += 1
             globalVariables.supplies -= 1
-        
+        elif decision == 2 and globalVariables.user_input == "n":
+            #FILL THIS
+            globalVariables.decision += 0
+            globalVariables.supplies -= 0
+            #
     elif decision == 3:
         if globalVariables.broken_solar:
             consoleKAI.output("Solar panel is broken!", 0, 0, (0,0,0))
