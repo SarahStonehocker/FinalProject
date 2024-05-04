@@ -1,5 +1,6 @@
 import pygame
 import sys
+import globalVariables
 
 pygame.init()
 
@@ -36,7 +37,12 @@ def draw():
                 if event.key == pygame.K_RETURN:
                     active = False
                     user_text = user_text.strip()
-                    output(user_text)
+                    if (globalVariables.decision == 1):
+                        if (user_text == "Fly straight away from Earth"):
+                            globalVariables.decision += 1
+                    elif (globalVariables.decision == 2):
+                        if (user_text == "yes"):
+                            globalVariables.decision += 1
                     user_text = ''
                 elif event.key == pygame.K_BACKSPACE:
                     user_text = user_text[:-1]
@@ -62,9 +68,9 @@ def draw():
 
     clock.tick(60)
 
-def output(text):
-    text_surface = base_font.render(text, True, (0, 0, 0))
-    screen.blit(text_surface, (input_rect.x, input_rect.y + 40))
+def output(text, x, y, color):
+    text_surface = base_font.render(text, True, color)
+    screen.blit(text_surface, (input_rect.x + x, input_rect.y + 40 + y))
     pygame.display.flip()
 
 def key_pressed(key):

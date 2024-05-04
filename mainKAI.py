@@ -41,7 +41,7 @@ def main():
 
             # Increment decision and handle it
             #handle_game_decisions(globalVariables.decision)
-            globalVariables.decision += 1
+            #globalVariables.decision += 1
 
             # Check if the game is over
             if globalVariables.supplies <= 0 or globalVariables.crew <= 0:
@@ -69,37 +69,39 @@ def main():
 
 def handle_game_decisions(decision):
     if decision == 1:
-        globalVariables.location = 0
-        consoleKAI.output("How shall we proceed? Fly straight away from Earth or slingshot around the moon? ")
+        consoleKAI.output("How shall we proceed?", 0, 0, (0,0,0))
+        consoleKAI.output("Fly straight away from Earth?", 0, 25, (0,0,255))
+        consoleKAI.output("Slingshot around the moon? ", 0, 50, (0,0,255))
     elif decision == 2:
-        consoleKAI.output("Jump to hyperspace now? ")
+        consoleKAI.output("Jump to hyperspace now? ", 0, 0, (0,0,0))
     elif decision == 3:
         if globalVariables.broken_solar:
-            consoleKAI.output("Solar panel is broken! Send a crew member or robot to fix it? ")
+            consoleKAI.output("Solar panel is broken! Send a crew member or robot to fix it? ", 0, 0, (0,0,0))
         else:
             globalVariables.decision += 1
     elif decision == 4:
         if not globalVariables.broken_solar:
-            consoleKAI.output("Interspacial law dictates that all distress signals must be investigated. How many crew members should go down to investigate? ")
+            consoleKAI.output("Interspacial law dictates that all distress signals must be investigated. How many crew members should go down to investigate? ", 0, 0, (0,0,0))
         else:
             globalVariables.decision += 1
     elif decision == 5:
         if globalVariables.broken_solar:
-            consoleKAI.output("You successfully made the jump, but something seems off about the software of your ship. Should we investigate the planet? ")
+            consoleKAI.output("You successfully made the jump, but something seems off about the software of your ship. Should we investigate the planet? ", 0, 0, (0,0,0))
         else:
             globalVariables.decision += 1
     elif decision == 6:
         if not globalVariables.broken_solar:
-            consoleKAI.output("You arrive at another star system. There seems to be some sort of escape pod orbiting a nearby moon. Inspect it or leave it alone? ")
+            consoleKAI.output("You arrive at another star system. There seems to be some sort of escape pod orbiting a nearby moon. Inspect it or leave it alone? ", 0, 0, (0,0,0))
         else:
             globalVariables.decision += 1
     elif decision == 7:
         if globalVariables.broken_solar:
-            consoleKAI.output("Arriving at the next star system, something is very wrong. Lights are flashing in the cabin and you hear an automated voice saying LOW POWER LOW POWER. Send a crew member to fix it or switch to power cell power? ")
+            consoleKAI.output("Arriving at the next star system, something is very wrong. Lights are flashing in the cabin and you hear an automated voice saying LOW POWER LOW POWER. Send a crew member to fix it or switch to power cell power? ", 0, 0, (0,0,0))
         else:
             globalVariables.decision += 1
     elif decision == 8:
-        consoleKAI.output("You arrive at the next system, hoping that you’re getting close to the probe. However, you are immediately aware of the giant black hole at the center of this system. Should we investigate the black hole or make the jump away? ")
+        consoleKAI.output("You arrive at the next system, hoping that you’re getting close to the probe. However, you are immediately aware of the giant black hole at the center of this system. Should we investigate the black hole or make the jump away? ", 0, 0, (0,0,0))
+
 
 if __name__ == "__main__":
     main()
