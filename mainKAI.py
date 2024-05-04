@@ -35,10 +35,7 @@ def main():
         consoleKAI.draw()
 
         #update and draw resources
-        consoleKAI.output("Crew: ", 0, 200, (0,0,0))
-        consoleKAI.output(str(globalVariables.crew), 67, 201, (0,0,0))
-        consoleKAI.output("Supplies: ", 90, 200, (0,0,0))
-        consoleKAI.output(str(globalVariables.supplies), 195, 201, (0,0,0))
+        updateResources()
 
         # Handle Pygame events
         for event in pygame.event.get():
@@ -69,6 +66,12 @@ def main():
             break
         if globalVariables.victory == True:
             break
+
+def updateResources():
+    consoleKAI.output("Crew: ", 0, 200, (0,0,0))
+    consoleKAI.output(str(globalVariables.crew), 67, 201, (0,0,0))
+    consoleKAI.output("Supplies: ", 90, 200, (0,0,0))
+    consoleKAI.output(str(globalVariables.supplies), 195, 201, (0,0,0))
 
 def handle_game_decisions(decision):
     friendlies = 0
