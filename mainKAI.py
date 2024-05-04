@@ -239,16 +239,17 @@ def handle_game_decisions(decision):
         consoleKAI.output("Make the jump away", 0, 75, (0,0,255))
         if decision == 8 and globalVariables.user_input == "investigate":
             if random.random() < 0.3:
-                consoleKAI.output("Your ship gets too close to the black hole and is destroyed.", 0, 75, (0,0,0))
+                consoleKAI.output("Your ship gets too close to the black hole and is destroyed.", 0, 100, (0,0,0))
                 globalVariables.crew = 0
                 globalVariables.supplies = 0
             else:
-                consoleKAI.output("You successfully gather valuable data about the black hole.", 0, 75, (0,0,0))
+                consoleKAI.output("You successfully gather valuable data.", 0, 100, (0,0,0))
+                pygame.time.wait(2000)
+                globalVariables.decision += 1
         elif decision == 8 and globalVariables.user_input == "jump":
             consoleKAI.output("You make the jump away.", 0, 100, (0,0,0))
             pygame.time.wait(2000)
             globalVariables.decision += 1
-    #PROBE BACKGROUND
     elif decision == 9:
         consoleKAI.output("YOU WIN!",0 ,0, (0,0,0))
         consoleKAI.output("You have found the probe!",0 ,25, (0,0,0))
