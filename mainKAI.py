@@ -26,7 +26,7 @@ def main():
         # Update background
         if globalVariables.decision == 1:
             SolandGraphics.earthLocation(0, 0, (0.5, 0.5), 0.1, 0)
-        elif globalVariables.decision == 2 or globalVariables.decision == 3 or globalVariables.decision == 5 or globalVariables.decision == 7:
+        elif globalVariables.decision == 2 or globalVariables.decision == 3 or globalVariables.decision == 5 or globalVariables.decision == 7 or  globalVariables.decision == 6:
             SolandGraphics.spaceLocation(0, 0, (0.5, 0.5), 0.1, 0)
             if globalVariables.decision == 7:
                 SolandGraphics.redFlash(0, 0, (0.5, 0.5), 0.1, 0)
@@ -74,7 +74,7 @@ def main():
             consoleKAI.output("Game over!", 0, 0, (0,0,0))
             pygame.time.wait(4000)
             #DRAW GAME OVER SCREEN
-            SolandGraphics.gameOver()
+            SolandGraphics.gameOver(0, 0, (0.5, 0.5), 0.1, 0)
             break
         if globalVariables.victory == True:
             break
@@ -130,8 +130,9 @@ def handle_game_decisions(decision):
                     pygame.time.wait(2000)
             elif decision == 3 and globalVariables.user_input == "robot":
                 consoleKAI.output("The robot is destroyed by gamma rays.", 0, 100, (0,0,0))
+                globalVariables.broken_solar == False
+                globalVariables.decision += 1
                 globalVariables.supplies -= 3
-                globalVariables.decision == 3
                 pygame.time.wait(2000)
                 
             elif decision == 3 and globalVariables.user_input == "ignore":
@@ -254,7 +255,7 @@ def handle_game_decisions(decision):
         if decision == 8 and globalVariables.user_input == "investigate":
             if random.random() < 0.3:
                 consoleKAI.output("Your ship gets too close to the black hole and is destroyed.", 0, 100, (0,0,0))
-                SolandGraphics.gameOver()
+                SolandGraphics.gameOver(0, 0, (0.5, 0.5), 0.1, 0)
                 globalVariables.crew = 0
                 globalVariables.supplies = 0
             else:
