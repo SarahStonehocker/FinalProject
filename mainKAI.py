@@ -19,7 +19,7 @@ def main():
     # Set up text input
     consoleKAI.init()
 
-    # Start Game
+# Start Game
     game_state = RUNNING
     while runGame:
 
@@ -49,7 +49,7 @@ def main():
                         game_state = RUNNING
                         #globalVariables.decision += 1  # Increment decision
                         consoleKAI.user_input()
-                        
+
                     else:
                         consoleKAI.key_pressed(event.key)
 
@@ -63,6 +63,7 @@ def main():
         if globalVariables.supplies <= 0 or globalVariables.crew <= 0:
             consoleKAI.output("Game over!", 0, 0, (0,0,0))
             pygame.time.wait(4000)
+            #DRAW GAME OVER SCREEN
             break
         if globalVariables.victory == True:
             break
@@ -77,7 +78,7 @@ def handle_game_decisions(decision):
     friendlies = 0
     if decision == 1:
         consoleKAI.output("How shall we proceed?", 0, 0, (0,0,0))
-        consoleKAI.output("Fly straight away from Earth?", 0,25, (0,0,255))
+        consoleKAI.output("Fly straight away from Earth?", 0, 25, (0,0,255))
         consoleKAI.output("Slingshot around the moon? ", 0, 50, (0,0,255))
         if decision == 1 and globalVariables.user_input == "fly":
             globalVariables.decision += 1
@@ -85,12 +86,11 @@ def handle_game_decisions(decision):
         elif decision == 1 and globalVariables.user_input == "slingshot":
             globalVariables.decision += 1
             globalVariables.supplies -= 1
-        #globalVariables.user_input = ""
-            
+
     elif decision == 2:
         consoleKAI.output("Jump to hyperspace now? (y/n) ", 0, 0, (0,0,0))
-
-        if random.random() < 0.4:
+        #globalVariables.broken_solar = True
+        if random.random() < 0.5:
             globalVariables.broken_solar = True
         else:
             globalVariables.broken_solar = False
@@ -99,28 +99,34 @@ def handle_game_decisions(decision):
             globalVariables.decision += 1
             globalVariables.supplies -= 1
         elif decision == 2 and globalVariables.user_input == "n":
-            #FILL THIS
             globalVariables.decision += 1
             globalVariables.supplies -= 4
-            #
+    #SPACE BACKGROUND
     elif decision == 3:
         if globalVariables.broken_solar:
             consoleKAI.output("Solar panel is broken!", 0, 0, (0,0,0))
             consoleKAI.output("Send a crew member", 0, 25, (0,0,255))
             consoleKAI.output("Send robot to fix it? ", 0, 50, (0,0,255))
+            consoleKAI.output("ignore", 0, 75, (0,0,255))
             if decision == 3 and globalVariables.user_input == "crew":
+                globalVariables.user_input = ""
                 if random.random() < 0.6:
                     globalVariables.crew -= 1
-                    consoleKAI.output("Crew member lost!", 0, 100, (0,0,0))
+                    consoleKAI.output("Crew member lost!", 0, 125, (0,0,0))
                 else:
                     globalVariables.broken_solar = False
-                    consoleKAI.output("Solar panel is fixed! ", 0, 100, (0,0,0))
+                    consoleKAI.output("Solar panel is fixed! ", 0, 125, (0,0,0))
                     pygame.time.wait(2000)
             elif decision == 3 and globalVariables.user_input == "robot":
-                consoleKAI.output("The robot is destroyed by gamma rays.", 0, 75, (0,0,0))
+                consoleKAI.output("The robot is destroyed by gamma rays.", 0, 100, (0,0,0))
                 pygame.time.wait(2000)
+            elif decision == 3 and globalVariables.user_input == "ignore":
+                globalVariables.decision += 1
+                globalVariables.supplies -= 1
+                globalVariables.broken_solar = True
         else:
             globalVariables.decision += 1
+    #PLANET BACKGROUND
     elif decision == 4:
         if not globalVariables.broken_solar:
             consoleKAI.output("Distress signals must be investigated! ", 0, 0, (0,0,0))
@@ -160,7 +166,7 @@ def handle_game_decisions(decision):
                     globalVariables.supplies -= 1
                     pygame.time.wait(2000)
                     globalVariables.decision += 1
-                    
+
             elif decision == 4 and globalVariables.user_input == "3":
                 if friendlies == 0:
                     consoleKAI.output("Your crew was able to escape the planet.", 0,75 ,(0,0,0))
@@ -177,13 +183,19 @@ def handle_game_decisions(decision):
                     globalVariables.crew = 0
         else:
             globalVariables.decision += 1
+    #SPACE BACKGROUND
     elif decision == 5:
         if globalVariables.broken_solar:
-            consoleKAI.output("You successfully made the jump, but something seems off about the software of your ship." , 0, 0, (0,0,0))
+            consoleKAI.output("You successfully made the jump" , 0, 0, (0,0,0))
+            consoleKAI.output("something seems off about your software." , 0, 25, (0,0,0))
+            pygame.time.wait(2000)
+            globalVariables.decision += 1
+            globalVariables.supplies -= 1
         else:
             globalVariables.decision += 1
+    #ESCAPE POD BACKGROUND
     elif decision == 6:
-        
+
         consoleKAI.output("You arrive at another star system.", 0, 0, (0,0,0))
         consoleKAI.output("Inspect strange escape pod", 0, 25, (0,0,255))
         consoleKAI.output("Leave it alone", 0, 50, (0,0,255))
@@ -196,8 +208,10 @@ def handle_game_decisions(decision):
                 globalVariables.supplies += 2
             pygame.time.wait(2000)
             globalVariables.decision += 1
-        
-
+        elif decision == 6 and globalVariables.user_input == "leave":
+            globalVariables.decision += 1
+            globalVariables.supplies -= 1
+    #FLASHING RED BACKGROUND
     elif decision == 7:
         if globalVariables.broken_solar:
             consoleKAI.output("LOW POWER LOW POWER." , 0, 0, (0,0,0))
@@ -207,16 +221,17 @@ def handle_game_decisions(decision):
                 if random.random() < 0.5:
                     consoleKAI.output("The crew member fixes the issue.", 0, 75, (0,0,0))
                     globalVariables.broken_solar = False
+                    globalVariables.decision += 1
                 else:
                     consoleKAI.output("The crew member fails to fix the issue.", 0, 75, (0,0,0))
                     globalVariables.crew -= 1
             elif decision == 7 and globalVariables.user_input == "power cell":
                 consoleKAI.output("You switch to power cell power.", 0, 75, (0,0,0))
                 globalVariables.supplies -= 1
-            globalVariables.decision += 1
+                globalVariables.decision += 1
         else:
             globalVariables.decision += 1
-
+    #BLACK HOLE BACKGROUND
     elif decision == 8:
         consoleKAI.output("You arrive at the next system.", 0, 0, (0,0,0))
         consoleKAI.output("There is a huge black hole!", 0, 25, (0,0,0))
@@ -233,6 +248,7 @@ def handle_game_decisions(decision):
             consoleKAI.output("You make the jump away.", 0, 100, (0,0,0))
             pygame.time.wait(2000)
             globalVariables.decision += 1
+    #PROBE BACKGROUND
     elif decision == 9:
         consoleKAI.output("YOU WIN!",0 ,0, (0,0,0))
         consoleKAI.output("You have found the probe!",0 ,25, (0,0,0))
