@@ -24,12 +24,12 @@ def main():
 
         # Update background
         if (globalVariables.decision == 1):
-            #fillerfor EarthLocation
-            SolandGraphics.drawBackground()
+            SolandGraphics.earthLocation(0,0, (0.5,0.5), 0.1, 0)
         elif (globalVariables.decision == 2):
             SolandGraphics.spaceLocation(0,0, (0.5,0.5), 0.1, 0)
         
         SolandGraphics.spaceShip(0,0, (0.5,0.5), 0.1, 0)
+        
 
         # Draw text input
         consoleKAI.draw()
@@ -77,6 +77,8 @@ def handle_game_decisions(decision):
     elif decision == 3:
         if globalVariables.broken_solar:
             consoleKAI.output("Solar panel is broken! Send a crew member or robot to fix it? ", 0, 0, (0,0,0))
+            consoleKAI.output("Send a crew member", 0, 25, (0,0,255))
+            consoleKAI.output("Send robot to fix it? ", 0, 50, (0,0,255))
         else:
             globalVariables.decision += 1
     elif decision == 4:

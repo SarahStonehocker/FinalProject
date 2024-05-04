@@ -161,6 +161,44 @@ def spaceLocation(x,y, size, speed, charAniState):
     else:
         return
 
+def earthLocation(x,y, size, speed, charAniState):
+    index = globalVariables.frame
+    time.sleep(speed) # frames per Second
+    frame1 = pygame.image.load('Sprites/earth/tree.png').convert_alpha()
+    frame2 = pygame.image.load('Sprites/earth/tree2.png').convert_alpha()
+    frame3 = pygame.image.load('Sprites/earth/tree3.jpg').convert_alpha()
+    frames = [frame1, frame2, frame3]
+    for i in frames:
+        pygame.transform.scale(i, size)
+    pos = x,y
+
+    #keep index in range
+    if (index >= 2):
+        index = 2
+    elif (index <= 0):
+        index = 0
+    else:
+        index = index
+
+    #idle animation
+    if charAniState == 0:
+        if (index == 0):
+            globalVariables.screen.blit(frame1, tuple(pos))
+            globalVariables.frame += 1
+
+        elif (index == 1):
+            globalVariables.screen.blit(frame2, tuple(pos))
+            globalVariables.frame += 1
+            
+        elif (index == 2):
+            globalVariables.screen.blit(frame3, tuple(pos))
+            globalVariables.frame = 0
+            
+        else:
+            return
+    else:
+        return
+
 #region testing
 '''
     run = True
