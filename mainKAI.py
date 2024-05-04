@@ -26,13 +26,23 @@ def main():
         # Update background
         if globalVariables.decision == 1:
             SolandGraphics.earthLocation(0, 0, (0.5, 0.5), 0.1, 0)
-        elif globalVariables.decision == 2:
+        elif globalVariables.decision == 2 or globalVariables.decision == 3 or globalVariables.decision == 5 or globalVariables.decision == 7:
             SolandGraphics.spaceLocation(0, 0, (0.5, 0.5), 0.1, 0)
-
-        SolandGraphics.spaceShip(0, 0, (0.5, 0.5), 0.1, 0)
-
+            if globalVariables.decision == 7:
+                SolandGraphics.redFlash(0, 0, (0.5, 0.5), 0.1, 0)
+        elif globalVariables.decision == 8:
+            SolandGraphics.blackHoleLocation(0, 0, (0.5, 0.5), 0.1, 0)
+        elif globalVariables.decision == 4:
+            SolandGraphics.planetLocation(0, 0, (0.5, 0.5), 0.1, 0)
+        
+        if globalVariables.decision == 9:
+            #win
+            SolandGraphics.win(0, 0, (0.5, 0.5), 0.1, 0)
+        else:
+            SolandGraphics.spaceShip(0, 0, (0.5, 0.5), 0.1, 0)
+            consoleKAI.draw()
         # Draw text input
-        consoleKAI.draw()
+        #consoleKAI.draw()
 
         #update and draw resources
         updateResources()
@@ -64,6 +74,7 @@ def main():
             consoleKAI.output("Game over!", 0, 0, (0,0,0))
             pygame.time.wait(4000)
             #DRAW GAME OVER SCREEN
+            SolandGraphics.gameOver()
             break
         if globalVariables.victory == True:
             break
@@ -119,7 +130,10 @@ def handle_game_decisions(decision):
                     pygame.time.wait(2000)
             elif decision == 3 and globalVariables.user_input == "robot":
                 consoleKAI.output("The robot is destroyed by gamma rays.", 0, 100, (0,0,0))
+                globalVariables.supplies -= 3
+                globalVariables.decision == 3
                 pygame.time.wait(2000)
+                
             elif decision == 3 and globalVariables.user_input == "ignore":
                 globalVariables.decision += 1
                 globalVariables.supplies -= 1
@@ -240,6 +254,7 @@ def handle_game_decisions(decision):
         if decision == 8 and globalVariables.user_input == "investigate":
             if random.random() < 0.3:
                 consoleKAI.output("Your ship gets too close to the black hole and is destroyed.", 0, 100, (0,0,0))
+                SolandGraphics.gameOver()
                 globalVariables.crew = 0
                 globalVariables.supplies = 0
             else:
@@ -251,8 +266,8 @@ def handle_game_decisions(decision):
             pygame.time.wait(2000)
             globalVariables.decision += 1
     elif decision == 9:
-        consoleKAI.output("YOU WIN!",0 ,0, (0,0,0))
-        consoleKAI.output("You have found the probe!",0 ,25, (0,0,0))
+        #consoleKAI.output("YOU WIN!",0 ,0, (0,0,0))
+        #consoleKAI.output("You have found the probe!",0 ,25, (0,0,0))
         pygame.time.wait(4000)
         globalVariables.victory = True
 
